@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
+	"time"
 
 	"go-gRPC/greet/greetpb"
 
@@ -29,7 +31,7 @@ func (*server) GreetManyTimes(req *greetpb.GreetManyTimesRequest, stream greetpb
 	for i := 0; i < 10; i++ {
 		result := "Hello " + firstName + " number" + strconv.Itoa(i)
 		res := &greetpb.GreetManyTimesResponse{
-			Result: result
+			Result: result,
 		}
 		stream.Send(res)
 		time.Sleep(1000 * time.Millisecond)
